@@ -1271,27 +1271,29 @@ oncontextmenu="event.preventDefault();"
 
 //testimon
 
+
+  // Other JS code here (menu, dark mode, etc.)
+
+  // Testimonials logic
   const slider = document.getElementById("testimonial-slider");
   const prevBtn = document.getElementById("prev");
   const nextBtn = document.getElementById("next");
-  const totalSlides = slider.children.length;
-  let index = 0;
 
-  function showSlide(i) {
-    slider.style.transform = `translateX(-${i * 100}%)`;
+  if (slider && prevBtn && nextBtn) {
+    let index = 0;
+
+    nextBtn.addEventListener("click", () => {
+      index++;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    prevBtn.addEventListener("click", () => {
+      index = Math.max(0, index - 1);
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    });
   }
 
-  prevBtn.addEventListener("click", () => {
-    index = (index - 1 + totalSlides) % totalSlides;
-    showSlide(index);
-  });
-
-  nextBtn.addEventListener("click", () => {
-    index = (index + 1) % totalSlides;
-    showSlide(index);
-  });
-
-  showSlide(index);
+  // More JS can continue safely below...
 
 
 //-------------------------------------------------------
@@ -1454,29 +1456,7 @@ function sendToWhatsApp() {
 
 //   toggleBtn.textContent = isHidden ? 'Show Less' : 'Show More';
 // });
-const toggleBtn = document.getElementById('toggleCertificates');
-const allCards = document.querySelectorAll('.certificate-card');
 
-const VISIBLE_COUNT = 3; // always keep 3 visible
-
-// Hide everything after the first 3 on load
-allCards.forEach((card, index) => {
-  if (index >= VISIBLE_COUNT) {
-    card.style.display = 'none';
-  }
-});
-
-toggleBtn.addEventListener('click', () => {
-  const isExpanded = toggleBtn.textContent === 'Show Less';
-
-  allCards.forEach((card, index) => {
-    if (index >= VISIBLE_COUNT) {
-      card.style.display = isExpanded ? 'none' : 'block';
-    }
-  });
-
-  toggleBtn.textContent = isExpanded ? 'Show More' : 'Show Less';
-});
 
 
     </script>
